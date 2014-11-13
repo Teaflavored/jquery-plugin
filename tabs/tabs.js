@@ -1,8 +1,7 @@
 $.Tabs = function (el) { 
   this.$el = $(el);
-  this.$contentTab = $(this.$el.data("content-tabs"))
-  this.$activeTab = this.$contentTab.find(".active");
-  this.$activeLink = this.$el.find(".active")
+  this.$contentTabs = $(this.$el.data("content-tabs"));
+  this.$activeLink = this.$el.find(".active");
   this.$el.on('click', 'a', this.clickTab.bind(this) );
 };
 
@@ -14,14 +13,26 @@ $.fn.tabs = function () {
 
 $.Tabs.prototype.clickTab = function(event){
   event.preventDefault();
-  this.$activeTab.removeClass('active');
-  this.$activeLink.removeClass('active');
+  var $currentTarget = $(event.currentTarget); //new link
   
-  var $currentTarget = $(event.currentTarget);
+  var $oldTab = this.$contentTabs.find(this.$activeLink.attr("href"));
+  var $newTab = this.$contentTabs.find($currentTarget.attr("href"));
+  
+  $oldTab.addClass("transitioning")
+  
+  $oldTab.one('transitionend', function(event){
+    $oldTab.removeClass("transitioning active");
+    $newTab.addClass('active transitioning');
+    window.setTimeout(function(){
+      $newTab.removeClass("transitioning");
+    },0)
+  });
+  
+  
+  
+  this.$activeLink.removeClass('active'); // old link
   $currentTarget.addClass('active');
   
-  this.$activeTab = $($currentTarget.attr("href"))
-  this.$activeTab.addClass('active');
   this.$activeLink = $currentTarget;
 
 };
