@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>My Cool Website</title>
+    <script src="./jquery-2.1.1.js"></script>
+    <script src="./thumbnail.js"></script>
+    <link href="./thumbnail.css" rel="stylesheet" type="text/css">
+  </head>
+  
+  <body>
+    <script>
+      $(function() {
+        $('.thumbnails').thumbnail();
+      })
+    </script>
+    
+    <div class="thumbnails">
+      <div class="active">
+      </div>
+      <div class="gutter">
+        <a href="javascript:void(0)" class="nav left">&lt;</a>
+        <div class="gutter-images">
+          <img src="./snorlax.png">
+          <img src="./koffing.png">
+          <img src="./lichitung.png">
+          <img src="./gengar.png">
+          <img src="./pikachu.png">
+          <img src="./squirtle.png">
+          <img src="./wartortle.png">
+          <img src="./blastoise.png">
+          <img src="./ivysaur.png">
+          <img src="./bulbasaur.png">
+          <img src="./venosaur.png">
+          <img src="./charmeleon.png">
+          <img src="./charizard.png">
+        </div>
+        <a href="javascript:void(0)" class="nav right">&gt;</a>
+      </div>
+    </div>
+    
+  </body>
+</html>
