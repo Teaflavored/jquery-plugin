@@ -20,7 +20,7 @@ $.Tabs.prototype.clickTab = function(event){
   
   $oldTab.addClass("transitioning")
   
-  $oldTab.one('transitionend', function(event){
+  $oldTab.one('transitionend', function(){
     $oldTab.removeClass("transitioning active");
     $newTab.addClass('active transitioning');
     window.setTimeout(function(){
